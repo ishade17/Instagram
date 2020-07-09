@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSMutableArray *postsArray;
 @property (weak, nonatomic) IBOutlet UITableView *mainFeedTableView;
-
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 

@@ -10,6 +10,9 @@
 		4805A42424B4FE8F00706761 /* AddImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4805A42324B4FE8F00706761 /* AddImageViewController.m */; };
 		484DAD4924B514080063DE5F /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 484DAD4824B514080063DE5F /* Post.m */; };
 		484DAD4C24B5220C0063DE5F /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 484DAD4B24B5220C0063DE5F /* PostCell.m */; };
+		4877C00124B6917D00789ED0 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4877C00024B6917D00789ED0 /* CommentsViewController.m */; };
+		4877C00424B6919000789ED0 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4877C00324B6919000789ED0 /* CommentCell.m */; };
+		4877C00724B6B1DE00789ED0 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4877C00624B6B1DE00789ED0 /* DetailsViewController.m */; };
 		4896AC3124B3F2D500C2879F /* MainFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4896AC3024B3F2D500C2879F /* MainFeedViewController.m */; };
 		48DE2A1624B3CFED004BD064 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DE2A1524B3CFED004BD064 /* AppDelegate.m */; };
 		48DE2A1924B3CFED004BD064 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DE2A1824B3CFED004BD064 /* SceneDelegate.m */; };
@@ -53,6 +56,12 @@
 		484DAD4824B514080063DE5F /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		484DAD4A24B5220C0063DE5F /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
 		484DAD4B24B5220C0063DE5F /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
+		4877BFFF24B6917D00789ED0 /* CommentsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
+		4877C00024B6917D00789ED0 /* CommentsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
+		4877C00224B6919000789ED0 /* CommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		4877C00324B6919000789ED0 /* CommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		4877C00524B6B1DE00789ED0 /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
+		4877C00624B6B1DE00789ED0 /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		4896AC2F24B3F2D500C2879F /* MainFeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainFeedViewController.h; sourceTree = "<group>"; };
 		4896AC3024B3F2D500C2879F /* MainFeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainFeedViewController.m; sourceTree = "<group>"; };
 		48DE2A1124B3CFED004BD064 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +135,8 @@
 			children = (
 				484DAD4A24B5220C0063DE5F /* PostCell.h */,
 				484DAD4B24B5220C0063DE5F /* PostCell.m */,
+				4877C00224B6919000789ED0 /* CommentCell.h */,
+				4877C00324B6919000789ED0 /* CommentCell.m */,
 				484DAD4724B514080063DE5F /* Post.h */,
 				484DAD4824B514080063DE5F /* Post.m */,
 			);
@@ -141,6 +152,10 @@
 				4896AC3024B3F2D500C2879F /* MainFeedViewController.m */,
 				4805A42224B4FE8F00706761 /* AddImageViewController.h */,
 				4805A42324B4FE8F00706761 /* AddImageViewController.m */,
+				4877BFFF24B6917D00789ED0 /* CommentsViewController.h */,
+				4877C00024B6917D00789ED0 /* CommentsViewController.m */,
+				4877C00524B6B1DE00789ED0 /* DetailsViewController.h */,
+				4877C00624B6B1DE00789ED0 /* DetailsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -453,9 +468,12 @@
 			files = (
 				48DE2A1C24B3CFED004BD064 /* SignInViewController.m in Sources */,
 				48DE2A1624B3CFED004BD064 /* AppDelegate.m in Sources */,
+				4877C00724B6B1DE00789ED0 /* DetailsViewController.m in Sources */,
 				4805A42424B4FE8F00706761 /* AddImageViewController.m in Sources */,
+				4877C00424B6919000789ED0 /* CommentCell.m in Sources */,
 				484DAD4C24B5220C0063DE5F /* PostCell.m in Sources */,
 				48DE2A2724B3CFEE004BD064 /* main.m in Sources */,
+				4877C00124B6917D00789ED0 /* CommentsViewController.m in Sources */,
 				48DE2A1924B3CFED004BD064 /* SceneDelegate.m in Sources */,
 				4896AC3124B3F2D500C2879F /* MainFeedViewController.m in Sources */,
 				484DAD4924B514080063DE5F /* Post.m in Sources */,

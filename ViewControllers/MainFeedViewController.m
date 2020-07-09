@@ -12,6 +12,7 @@
 #import "SignInViewController.h"
 #import <UIKit/UIKit.h>
 #import "PostCell.h"
+#import "DetailsViewController.h"
 
 @interface MainFeedViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -23,8 +24,13 @@
     [super viewDidLoad];
     self.mainFeedTableView.dataSource = self;
     self.mainFeedTableView.delegate = self;
-    self.mainFeedTableView.rowHeight = 800;
+    
     [self fetchFeed];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchFeed) forControlEvents:UIControlEventValueChanged];
+    [self.mainFeedTableView insertSubview:self.refreshControl atIndex:0];
+    
 }
 
 - (IBAction)didTapLogout:(id)sender {
@@ -42,6 +48,7 @@
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query includeKey:@"author"];
+    [query orderByDescending:@"createdAt"];
     query.limit = 20;
 
     // fetch data asynchronously
@@ -52,6 +59,7 @@
             NSLog(@"%@", error.localizedDescription);
         }
         [self.mainFeedTableView reloadData];
+        [self.refreshControl endRefreshing];
     }];
 }
 
@@ -61,29 +69,37 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PostCell *cell  = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
-    
     Post *postInfo = self.postsArray[indexPath.row];
+    
     cell.post = postInfo;
-    NSLog(@"hello!");
     cell.nameLabel.text = postInfo.author.username;
     cell.postImage.file = postInfo[@"image"]; 
     [cell.postImage loadInBackground];
     cell.captionLabel.text = postInfo.caption;
-    cell.likesCountLabel.text = [NSString stringWithFormat:@"%@", postInfo.likeCount];
     
     return cell;
 }
 
+- (IBAction)tappedLike:(id)sender {
+    
+}
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    UITableViewCell *tappedCell = sender;
+    NSIndexPath *indexPath = [self.mainFeedTableView indexPathForCell:tappedCell];
+    Post *post = self.postsArray[indexPath.row];
+
+    DetailsViewController *detailsViewController = [segue destinationViewController];
+    detailsViewController.post = post;
 }
-*/
+
 
 @end

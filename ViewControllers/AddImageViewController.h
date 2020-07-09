@@ -7,15 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MainFeedViewController.h"
+#import <Parse/Parse.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AddImageViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *selectedImage;
-@property (weak, nonatomic) IBOutlet UITextField *captionTextField;
+@property (weak, nonatomic) IBOutlet UILabel *uploadImageLabel;
+@property (weak, nonatomic) IBOutlet UITextView *captionTextView;
 
 - (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size;
+- (void)textViewDidBeginEditing:(UITextView *)textView;
+- (void)textViewDidEndEditing:(UITextView *)textView;
 
 @end
 

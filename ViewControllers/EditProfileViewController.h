@@ -12,11 +12,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol EditProfileViewControllerDelegate
+
+- (void)didEdit:(PFUser *)currentUser;
+
+@end
+
 @interface EditProfileViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
 @property (weak, nonatomic) IBOutlet UILabel *uploadProfilePicLabel;
 @property (weak, nonatomic) IBOutlet UITextField *profileBioTextField;
+
+@property (nonatomic, weak) id<EditProfileViewControllerDelegate> delegate;
 
 @end
 

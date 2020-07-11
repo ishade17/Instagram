@@ -14,12 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ProfileViewController : UIViewController
 
-@property (nonatomic, strong) PFUser *currentUser;
+//@property (nonatomic, strong) PFUser *currentUser;
 @property (nonatomic, strong) NSMutableArray *profilePostsArray;
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UILabel *profileName;
 @property (weak, nonatomic) IBOutlet UILabel *profileBio;
-@property (weak, nonatomic) IBOutlet PFImageView *profilePicture; 
+@property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 

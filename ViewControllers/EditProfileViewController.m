@@ -98,7 +98,7 @@
     [PFUser.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             NSLog(@"User profile updated with pic and bio");
-            [self refreshData];
+            [self.delegate didEdit:PFUser.currentUser];
             [self dismissViewControllerAnimated:true completion:nil];
         } else {
             NSLog(@"%@", error.localizedDescription);
@@ -106,22 +106,20 @@
     }];
 }
 
-- (void)refreshData {
-    ProfileViewController *profile = [[ProfileViewController alloc] init];
-    profile.profilePicture.file = PFUser.currentUser[@"profilePic"];
-    [profile.profilePicture loadInBackground];
-    profile.profileBio.text = PFUser.currentUser[@"profileBio"];
-}
 
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    ProfileViewController *profile = [segue destinationViewController];
+    profile.profilePicture.file = PFUser.currentUser[@"profilePic"];
+    [profile.profilePicture loadInBackground];
+    profile.profileBio.text = PFUser.currentUser[@"profileBio"];
+    
 }
-*/
+
 
 @end

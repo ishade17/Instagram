@@ -9,6 +9,7 @@
 #import "DetailsViewController.h"
 #import "Post.h"
 #import "NSDate+DateTools.h"
+#import "CommentsViewController.h"
 
 @interface DetailsViewController ()
 
@@ -29,14 +30,19 @@
     
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqualToString:@"toCommentSegue"]) {
+        CommentsViewController *commentsViewController = [segue destinationViewController];
+        commentsViewController.post = self.post;
+    }
 }
-*/
+
 
 @end

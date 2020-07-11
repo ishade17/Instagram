@@ -7,6 +7,8 @@
 //
 
 #import "CommentCell.h"
+#import "Comment.h"
+#import <Parse/Parse.h>
 
 @implementation CommentCell
 
@@ -20,5 +22,12 @@
 
     // Configure the view for the selected state
 }
+
+/*+ (void)updateWithComment: (Comment *)comment {
+    self.commentUserLabel = comment.author;
+    self.commentLabel = comment.caption;
+    
+}
+ */
 
 @end

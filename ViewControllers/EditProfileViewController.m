@@ -1,37 +1,32 @@
 //
-//  AddImageViewController.m
+//  EditProfileViewController.m
 //  Instagram
 //
-//  Created by Isaac Schaider on 7/7/20.
+//  Created by Isaac Schaider on 7/10/20.
 //  Copyright © 2020 codepath. All rights reserved.
 //
 
-#import "AddImageViewController.h"
-#import "Post.h"
+#import "EditProfileViewController.h"
+#import <Parse/Parse.h>
 
-@interface AddImageViewController () <UITextViewDelegate>
+@interface EditProfileViewController ()
 
 @end
 
-@implementation AddImageViewController
+@implementation EditProfileViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.selectedImage.layer setBorderColor: [[UIColor blackColor] CGColor]];
-    [self.selectedImage.layer setBorderWidth: 0.5];
-    self.selectedImage.image = nil;
-    self.uploadImageLabel.alpha = 1;
+    // Do any additional setup after loading the view.
+
+    [self.profilePicture.layer setBorderColor: [[UIColor blackColor] CGColor]];
+    [self.profilePicture.layer setBorderWidth: 0.5];
+    self.profilePicture.alpha = 1;
     
-    self.captionTextView.delegate = self;
-    self.captionTextView.text = @"Add a caption...";
-    self.captionTextView.textColor = UIColor.lightGrayColor;
-    
-    self.captionTextView.layer.borderWidth = 0.5f;
-    self.captionTextView.layer.borderColor = [[UIColor grayColor] CGColor];
 }
 
-- (IBAction)tappedSelectImage:(id)sender {
+- (IBAction)tappedChooseImage:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
@@ -60,81 +55,52 @@
                                                          }];
         // add the OK action to the alert controller
         [alert addAction:okAction];
-        
+
         [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    
+
     // Get the image captured by the UIImagePickerController
     // UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
 
     // Do something with the images (based on your use case)
-    self.selectedImage.image = [self resizeImage:editedImage withSize:CGSizeMake(150, 150)];
-    self.uploadImageLabel.alpha = 0;
+    self.profilePicture.image = [self resizeImage:editedImage withSize:CGSizeMake(150, 150)];
+    self.uploadProfilePicLabel.alpha = 0;
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
     UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    
+
     resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
     resizeImageView.image = image;
-    
+
     UIGraphicsBeginImageContext(size);
     [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
+
     return newImage;
 }
 
-- (IBAction)tappedPost:(id)sender {
-    if (self.selectedImage.image != nil && [self.captionTextView hasText]) {
-    [Post postUserImage:self.selectedImage.image withCaption:self.captionTextView.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+- (IBAction)tappedUpdateProfile:(id)sender {
+    if (self.profilePicture.image != nil) {
+        NSData *imageData = UIImagePNGRepresentation(self.profilePicture.image);
+        PFUser.currentUser[@"profilePic"] = [PFFileObject fileObjectWithName:@"image.png" data:imageData];
+    }
+
+    PFUser.currentUser[@"profileBio"] = self.profileBioTextField.text;
+    [PFUser.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
-            NSLog(@"Successful post!");
-            self.tabBarController.selectedIndex = 0;
-            self.captionTextView.text = @"";
-            self.selectedImage.image = nil;
-            self.uploadImageLabel.alpha = 1;
+            NSLog(@"User profile updated with pic and bio");
         } else {
-            NSLog(@"@", error.localizedDescription);
+            NSLog(@"%@", error.localizedDescription);
         }
-        }];
-    } else {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error with post"
-               message:@"Please select a photo and caption"
-        preferredStyle:(UIAlertControllerStyleAlert)];
-
-        // create an OK action
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:^(UIAlertAction * _Nonnull action) {
-                                                                 // handle response here.
-                                                         }];
-        // add the OK action to the alert controller
-        [alert addAction:okAction];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-    }
-}
-
-- (void)textViewDidBeginEditing:(UITextView *)textView {
-    if ([textView.text isEqualToString:@"Add a caption..."]) {
-        textView.text = @"";
-        self.captionTextView.textColor = UIColor.blackColor;
-    }
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView {
-    if ([textView.text isEqualToString:@""]) {
-        textView.text = @"Add a caption...";
-        self.captionTextView.textColor = UIColor.lightGrayColor;
-    }
+    }];
 }
 
 

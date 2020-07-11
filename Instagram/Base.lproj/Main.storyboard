@@ -204,10 +204,10 @@
             </objects>
             <point key="canvasLocation" x="618.84057971014499" y="799.55357142857144"/>
         </scene>
-        <!--Comments-->
+        <!--Comments View Controller-->
         <scene sceneID="LGk-DH-mjt">
             <objects>
-                <viewController id="eQh-pA-3Cd" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CommentsViewController" title="Comments View Controller" id="eQh-pA-3Cd" customClass="CommentsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f0J-q9-4cS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -221,29 +221,33 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="53" id="J8i-eb-eKm">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="53" id="J8i-eb-eKm" customClass="CommentCell">
                                                 <rect key="frame" x="0.0" y="28" width="414" height="53"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="J8i-eb-eKm" id="tEj-wu-1eF">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="53"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Billy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOQ-HB-PEw">
-                                                            <rect key="frame" x="20" y="11" width="34" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Comment!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HsQ-QS-xu5">
-                                                            <rect key="frame" x="75" y="11" width="319" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Comment!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HsQ-QS-xu5">
+                                                            <rect key="frame" x="75" y="16" width="319" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Billy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOQ-HB-PEw">
+                                                            <rect key="frame" x="20" y="16" width="34" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="commentLabel" destination="HsQ-QS-xu5" id="twV-zT-mBp"/>
+                                                    <outlet property="commentUserLabel" destination="EOQ-HB-PEw" id="8jC-GR-OdD"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
@@ -254,10 +258,13 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lU3-xZ-lWf">
-                                        <rect key="frame" x="364" y="746" width="42" height="34"/>
+                                        <rect key="frame" x="367" y="746" width="36" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="Send"/>
+                                        <state key="normal" title="Post"/>
+                                        <connections>
+                                            <action selector="tappedPostComment:" destination="eQh-pA-3Cd" eventType="touchUpInside" id="lDz-cc-Aze"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -269,10 +276,82 @@
                         <viewLayoutGuide key="safeArea" id="s9P-Ib-KVm"/>
                     </view>
                     <navigationItem key="navigationItem" title="Comments" id="Yq4-eB-9FN"/>
+                    <connections>
+                        <outlet property="commentMessageField" destination="Oxa-JY-5zw" id="bLC-i3-a3x"/>
+                        <outlet property="commentsTableView" destination="3jU-3J-OwX" id="PHD-fv-zrq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IS2-Lg-goF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1500.0000000000002" y="1478.5714285714284"/>
+        </scene>
+        <!--Edit Profile View Controller-->
+        <scene sceneID="v2K-84-Ttw">
+            <objects>
+                <viewController storyboardIdentifier="EditProfileViewController" title="Edit Profile View Controller" id="4nn-Bz-Dgv" customClass="EditProfileViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uiM-Vp-kEF" customClass="Edit">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dbS-HI-bDQ" customClass="PFImageView">
+                                <rect key="frame" x="86" y="106" width="242" height="242"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Upload your profile pic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPR-h8-Q3f">
+                                <rect key="frame" x="119" y="217" width="178" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCw-dr-HTk">
+                                <rect key="frame" x="119" y="392" width="55" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" backgroundImage="photo.on.rectangle" catalog="system"/>
+                                <connections>
+                                    <action selector="tappedChooseImage:" destination="4nn-Bz-Dgv" eventType="touchUpInside" id="wXt-Jc-7T7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FaQ-tq-o2w">
+                                <rect key="frame" x="241" y="393" width="55" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" backgroundImage="camera.on.rectangle" catalog="system">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedCaptureImage:" destination="4nn-Bz-Dgv" eventType="touchUpInside" id="b6g-Hs-ARh"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a bio..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xXr-Ff-NXn">
+                                <rect key="frame" x="53" y="477" width="309" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LjU-Xh-WBM">
+                                <rect key="frame" x="152" y="576" width="110" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Update Profile"/>
+                                <connections>
+                                    <action selector="tappedUpdateProfile:" destination="4nn-Bz-Dgv" eventType="touchUpInside" id="SOi-ie-nwK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Hfw-WT-Rr4"/>
+                    </view>
+                    <connections>
+                        <outlet property="profileBioTextField" destination="xXr-Ff-NXn" id="TpX-6h-pD6"/>
+                        <outlet property="profilePicture" destination="dbS-HI-bDQ" id="2eG-7r-93m"/>
+                        <outlet property="uploadProfilePicLabel" destination="VPR-h8-Q3f" id="PU5-bN-K6V"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RF6-zh-TkR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2415.9420289855075" y="1478.5714285714284"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="IKC-9s-gye">
@@ -322,7 +401,7 @@
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" backgroundImage="message" catalog="system"/>
                                         <connections>
-                                            <segue destination="eQh-pA-3Cd" kind="showDetail" id="U0J-pL-qS7"/>
+                                            <segue destination="eQh-pA-3Cd" kind="showDetail" identifier="toCommentSegue" id="U0J-pL-qS7"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1h-OF-yfG">
@@ -346,7 +425,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lF2-43-jAg">
                                         <rect key="frame" x="80" y="574" width="30" height="30"/>
                                         <connections>
-                                            <segue destination="eQh-pA-3Cd" kind="showDetail" id="yxE-ZL-0dj"/>
+                                            <segue destination="eQh-pA-3Cd" kind="showDetail" identifier="toCommentSegue" id="yxE-ZL-0dj"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 min ago " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQd-94-9M6">
@@ -437,10 +516,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POy-Gt-QEr">
-                                        <rect key="frame" x="235" y="389" width="46" height="36"/>
+                                        <rect key="frame" x="235" y="389" width="55" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="FLn-IV-3M5"/>
-                                            <constraint firstAttribute="width" constant="46" id="ps3-Sk-CC2"/>
+                                            <constraint firstAttribute="width" constant="55" id="ps3-Sk-CC2"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" backgroundImage="camera.on.rectangle" catalog="system">
@@ -563,20 +642,20 @@
             </objects>
             <point key="canvasLocation" x="1500" y="122"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="js3-Yl-uSA">
             <objects>
-                <viewController id="QYE-dY-fjq" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" title="Profile View Controller" id="QYE-dY-fjq" customClass="ProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="guh-wm-lFo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Ak-af-AZ1">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Ak-af-AZ1" customClass="PFImageView">
                                 <rect key="frame" x="20" y="128" width="101" height="101"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gI0-6j-nRz">
-                                <rect key="frame" x="0.0" y="274" width="414" height="539"/>
+                                <rect key="frame" x="0.0" y="310" width="414" height="503"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YIX-Uv-ZrE">
@@ -604,25 +683,32 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="i'm a yolo type of guy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Oo-sB-R81">
-                                <rect key="frame" x="147" y="192" width="183" height="24"/>
+                                <rect key="frame" x="20" y="250" width="183" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uyb-pa-R1O">
-                                <rect key="frame" x="231" y="149" width="39" height="24"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78E-oY-G7G">
+                                <rect key="frame" x="147" y="186" width="87" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" backgroundImage="photo.on.rectangle" catalog="system">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="edit profile"/>
+                                <connections>
+                                    <segue destination="4nn-Bz-Dgv" kind="showDetail" id="znK-gI-XZd"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="mnW-v0-StL"/>
                     </view>
                     <navigationItem key="navigationItem" id="sff-b3-iwk"/>
+                    <connections>
+                        <outlet property="collectionView" destination="gI0-6j-nRz" id="15m-KE-AHq"/>
+                        <outlet property="profileBio" destination="5Oo-sB-R81" id="QyE-TQ-MDl"/>
+                        <outlet property="profileName" destination="jTF-iY-Aez" id="Ja0-mg-wcG"/>
+                        <outlet property="profilePicture" destination="5Ak-af-AZ1" id="evA-UZ-XhJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1fT-8t-eij" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -647,7 +733,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="U0J-pL-qS7"/>
+        <segue reference="yxE-ZL-0dj"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera.on.rectangle" catalog="system" width="128" height="96"/>

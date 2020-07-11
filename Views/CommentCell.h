@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CommentCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *commentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *commentUserLabel;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

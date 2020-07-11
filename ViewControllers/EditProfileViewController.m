@@ -8,6 +8,7 @@
 
 #import "EditProfileViewController.h"
 #import <Parse/Parse.h>
+#import "ProfileViewController.h"
 
 @interface EditProfileViewController ()
 
@@ -97,10 +98,19 @@
     [PFUser.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             NSLog(@"User profile updated with pic and bio");
+            [self refreshData];
+            [self dismissViewControllerAnimated:true completion:nil];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+}
+
+- (void)refreshData {
+    ProfileViewController *profile = [[ProfileViewController alloc] init];
+    profile.profilePicture.file = PFUser.currentUser[@"profilePic"];
+    [profile.profilePicture loadInBackground];
+    profile.profileBio.text = PFUser.currentUser[@"profileBio"];
 }
 
 

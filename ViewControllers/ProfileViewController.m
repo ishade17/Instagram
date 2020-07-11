@@ -18,13 +18,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.profilePicture.layer setBorderColor: [[UIColor blackColor] CGColor]];
+    [self.profilePicture.layer setBorderWidth: 0.5];
         
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:NO];
     [self loadProfile];
-    NSLog(@"yup");
 }
 
 - (void)loadProfile {
@@ -32,7 +33,6 @@
     [self.profilePicture loadInBackground];
     self.profileBio.text = PFUser.currentUser[@"profileBio"];
     self.profileName.text = PFUser.currentUser[@"username"];
-    NSLog(@"hello");
 }
 
 - (void)didEdit:(nonnull PFUser *)currentUser {
